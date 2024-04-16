@@ -1,14 +1,13 @@
 import ProductGrid from "@/components/pages/shop/productGrid/ProductGrid";
 import Sidebar from "@/components/pages/shop/sidebar/Sidebar";
 
-
-const page = () => {
+const Shop = () => {
   return (
     <div className="w-full flex">
-      <ProductGrid/>
-      <Sidebar/>
+      <ProductGrid />
+      <Sidebar />
     </div>
   );
-}
+};
 
-export default page;
+export default Shop;

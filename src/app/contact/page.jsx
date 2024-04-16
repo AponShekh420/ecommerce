@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/common/ContactForm";
 
-const page = () => {
+const Contact = () => {
   return (
     <div className="w-full">
       <ContactForm/>
@@ -8,4 +8,4 @@ const page = () => {
   );
 }
 
-export default page;
+export default Contact;
