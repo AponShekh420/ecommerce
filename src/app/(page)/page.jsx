@@ -1,4 +1,5 @@
 import CatagorySection from "@/components/pages/home/catagory/CatagorySection";
+import CoursesSlider from "@/components/pages/home/coursesSlider/CoursesSlider";
 import ProductSlider from "@/components/pages/home/productSlider/ProductSlider";
 import Services from "@/components/pages/home/services/Services";
 import SlideSection from "@/components/pages/home/slider/SlideSection";
@@ -8,7 +9,6 @@ import UltimateRelationship from "@/components/pages/home/ultimateRelationship/U
 import UpcomingCourses from "@/components/pages/home/upcomingCourse/UpcomingCourses";
 import UpcommingScheduleSection from "@/components/pages/home/upcomming/UpcommingScheduleSection";
 import WelcomeSection from "@/components/pages/home/welcome/WelcomeSection";
-import CoursesSlider from "../components/pages/home/coursesSlider/CoursesSlider";
 
 export const metadata = {
   title: "Ohel Miriam | Online Shop",

@@ -121,7 +121,7 @@ const products = [
 
 const ProductSlider = () => {
   return (
-    <div className="my-10">
+    <div className="my-10 HomePageSlider">
       <SectionHeading
         title="TOP PRODUCT"
         desc="Gain an awareness, Conquer Challenges And Celebrate Success"

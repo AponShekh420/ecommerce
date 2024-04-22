@@ -17,6 +17,7 @@ const Filter = () => {
           value={value}
           onChange={setValue}
           className="max-w-md"
+          aria-labelledby="shop page filter"
         />
         <div className="flex justify-between w-full items-center mt-1 md:gap-x-2">
           <button className="text-white bg-BtnBg lg:py-2 lg:px-3 md:px-2 md:py-1 rounded-md font-semibold text-xs shadow-md shadow-slate-700 uppercase border-btnColor border-[2px]">

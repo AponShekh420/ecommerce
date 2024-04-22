@@ -1,9 +1,9 @@
-.swiper {
+.singleProductSlider .swiper {
   width: 100%;
   height: 100%;
 }
 
-.swiper-slide {
+.singleProductSlider .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -14,47 +14,47 @@
   align-items: center;
 }
 
-.swiper-slide img {
+.singleProductSlider .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.swiper {
+.singleProductSlider .swiper {
   width: 100%;
   height: 300px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.swiper-slide {
+.singleProductSlider .swiper-slide {
   background-size: cover;
   background-position: center;
 }
 
-.mySwiper2 {
+.singleProductSlider .mySwiper2 {
   height: 80%;
   width: 100%;
 }
 
-.mySwiper {
+.singleProductSlider .mySwiper {
   height: 20%;
   box-sizing: border-box;
   padding: 10px 0;
 }
 
-.mySwiper .swiper-slide {
+.singleProductSlider .mySwiper .swiper-slide {
   width: 25%;
   height: 100%;
   opacity: 0.4;
 }
 
-.mySwiper .swiper-slide-thumb-active {
+.singleProductSlider .mySwiper .swiper-slide-thumb-active {
   opacity: 1;
 }
 
-.swiper-slide img {
+.singleProductSlider .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;

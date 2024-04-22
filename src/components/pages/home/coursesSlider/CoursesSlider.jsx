@@ -93,7 +93,7 @@ const products = [
 
 const CoursesSlider = () => {
   return (
-    <div className="my-10">
+    <div className="my-10 HomePageSlider">
       <SectionHeading
         title="Popular Courses"
         desc="Gain an awareness, Conquer Challenges And Celebrate Success"

@@ -1,10 +1,10 @@
-import { Roboto } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import Container from "@/components/common/Container";
-import Header from "@/components/header/Header";
+import NextUiContext from "@/components/context/NextUiContext";
 import Footer from "@/components/footer/primary/Footer";
 import ScndFooter from "@/components/footer/secondry/ScndFooter";
-import NextUiContext from "@/components/context/NextUiContext";
+import Header from "@/components/header/Header";
+import { Roboto } from "next/font/google";
 
 const roboto = Roboto({ 
     weight: ["100", "300", "400", "500", "700", "900"],

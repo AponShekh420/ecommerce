@@ -1,4 +1,4 @@
-.swiper-button-next {
+.HomePageSlider .swiper-button-next {
   box-sizing: border-box;
   border-radius: 100%;
   height: 5px;
@@ -7,12 +7,12 @@
   color: #0f75bc;
   border: 2px solid #0f75bc;
 }
-.swiper-button-next::after {
+.HomePageSlider .swiper-button-next::after {
   font-size: 17px;
   font-weight: 600;
 }
 
-.swiper-button-prev {
+.HomePageSlider .swiper-button-prev {
   box-sizing: border-box;
   border-radius: 100%;
   height: 5px;
@@ -21,7 +21,7 @@
   color: #0f75bc;
   border: 2px solid #0f75bc;
 }
-.swiper-button-prev::after {
+.HomePageSlider .swiper-button-prev::after {
   font-size: 17px;
   font-weight: 600;
 }

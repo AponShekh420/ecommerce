@@ -1,9 +1,9 @@
 "use client";
 import { RadioGroup } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/20/solid";
+import { Tooltip } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
-
 // Import Swiper React components
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -58,14 +58,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Product = () => {
+const Product = ({ params }) => {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="relative flex w-full items-center overflow-hidden px-4 pb-8 pt-14  sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+    <div className="relative flex w-full items-center overflow-hidden px-4 pb-8 pt-14  sm:px-6 sm:pt-8 md:p-6 lg:p-8 singleProductSlider">
       <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-7 lg:gap-x-8">
         <div className="h-[600px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px] aspect-w-2 overflow-hidden rounded-lg bg-white col-span-4">
           <Swiper
@@ -82,13 +82,19 @@ const Product = () => {
           >
             <SwiperSlide>
               <div className="swiper-zoom-container">
-                <Image
-                  src="https://swiperjs.com/demos/images/nature-1.jpg"
-                  alt={product.imageAlt}
-                  className="object-cover object-center"
-                  width={100}
-                  height={100}
-                />
+                <Tooltip
+                  content="duble click here to zoom"
+                  showArrow={true}
+                  color="secondary"
+                >
+                  <Image
+                    src="https://swiperjs.com/demos/images/nature-1.jpg"
+                    alt={product.imageAlt}
+                    className="object-cover object-center"
+                    width={100}
+                    height={100}
+                  />
+                </Tooltip>
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -294,8 +300,8 @@ const Product = () => {
           </Swiper>
         </div>
         <div className="col-span-3">
-          <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">
-            {product.name}
+          <h2 className="text-2xl font-bold text-gray-900 sm:pr-12 capitalize">
+            {params.slug.split("-").join(" ")}
           </h2>
 
           <section aria-labelledby="information-heading" className="mt-2">

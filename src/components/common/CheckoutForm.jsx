@@ -45,19 +45,20 @@ const formSchema = z.object({
   city: z.string().min(3, {
     message: "Please fill out this field.",
   }),
-  state: z.string().min(3, {
-    message: "Please fill out this field.",
+  state: z.string({
+    required_error: "Please select an state.",
+    message: "Please select an state",
   }),
   zip: z.string().min(3, {
     message: "Please fill out this field.",
   }),
   country: z.string({
-    required_error: "Please select an country to display.",
-    message: "Please select an country to display.",
+    required_error: "Please select an country",
+    message: "Please select an country",
   }),
 });
 
-export function SubscribeForm() {
+export function CheckoutForm() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -90,7 +91,7 @@ export function SubscribeForm() {
             control={form.control}
             name="firstname"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   First Name <span className="text-red-600">*</span>
                 </FormLabel>
@@ -105,7 +106,7 @@ export function SubscribeForm() {
             control={form.control}
             name="lastname"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   Last Name <span className="text-red-600">*</span>
                 </FormLabel>
@@ -120,7 +121,7 @@ export function SubscribeForm() {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   Email <span className="text-red-600">*</span>
                 </FormLabel>
@@ -135,7 +136,7 @@ export function SubscribeForm() {
             control={form.control}
             name="spousename"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   Spouse Name <span className="text-red-600">*</span>
                 </FormLabel>
@@ -150,7 +151,7 @@ export function SubscribeForm() {
             control={form.control}
             name="contactphone"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   Contact Phone <span className="text-red-600">*</span>
                 </FormLabel>
@@ -165,7 +166,7 @@ export function SubscribeForm() {
             control={form.control}
             name="otherphone"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>Other Phone</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter Your Other Phone" {...field} />
@@ -177,7 +178,7 @@ export function SubscribeForm() {
             control={form.control}
             name="address"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   Address <span className="text-red-600">*</span>
                 </FormLabel>
@@ -192,7 +193,7 @@ export function SubscribeForm() {
             control={form.control}
             name="city"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   City <span className="text-red-600">*</span>
                 </FormLabel>
@@ -205,15 +206,27 @@ export function SubscribeForm() {
           />
           <FormField
             control={form.control}
-            name="state"
+            name="State"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   State <span className="text-red-600">*</span>
                 </FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter Your State" {...field} />
-                </FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a State" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Bangladesh">Dhaka</SelectItem>
+                    <SelectItem value="India">Gazipur</SelectItem>
+                    <SelectItem value="Pkisthan">Khulna</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -222,7 +235,7 @@ export function SubscribeForm() {
             control={form.control}
             name="zip"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   Zip <span className="text-red-600">*</span>
                 </FormLabel>
@@ -237,7 +250,7 @@ export function SubscribeForm() {
             control={form.control}
             name="country"
             render={({ field }) => (
-              <FormItem className="sm:w-1/2 w-full sm:pr-3 space-y-1">
+              <FormItem className="lg:w-1/2 w-full sm:pr-3 space-y-1">
                 <FormLabel>
                   Country <span className="text-red-600">*</span>
                 </FormLabel>
@@ -262,17 +275,17 @@ export function SubscribeForm() {
           />
           <FormField
             control={form.control}
-            name="comments"
+            name="orderNote"
             render={({ field }) => (
               <FormItem className="w-full sm:pr-3 space-y-1">
-                <FormLabel>Comments</FormLabel>
-                <Textarea placeholder="Type your message here." />
+                <FormLabel>Order Notes (optional)</FormLabel>
+                <Textarea placeholder="Notes about your order, e.g special notes for delivery" />
               </FormItem>
             )}
           />
           <Button
             type="submit"
-            className="bg-BtnBg py-2 text-center px-3 rounded-3xl font-semibold text-xs shadow-md shadow-slate-700 uppercase border-btnColor border-[2px] mt-1 text-white m-auto"
+            className="bg-BtnBg py-2 invisible text-center px-3 rounded-3xl font-semibold text-xs shadow-md shadow-slate-700 uppercase border-btnColor border-[2px] mt-1 text-white m-auto"
           >
             Submit
           </Button>
