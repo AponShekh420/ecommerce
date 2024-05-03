@@ -1,6 +1,4 @@
-import { ChevronLeft, PlusCircle, Upload } from "lucide-react";
-import Image from "next/image";
-
+import productPlaceHolderImage from "@/assets/product/placeholder.svg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,6 +28,8 @@ import {
 } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ChevronLeft, PlusCircle, Upload } from "lucide-react";
+import Image from "next/image";
 
 const Edit = () => {
   return (
@@ -277,7 +277,7 @@ const Edit = () => {
                     alt="Product image"
                     className="aspect-square w-full rounded-md object-cover"
                     height="300"
-                    src="/placeholder.svg"
+                    src={productPlaceHolderImage}
                     width="300"
                   />
                   <div className="grid grid-cols-3 gap-2">
@@ -286,7 +286,7 @@ const Edit = () => {
                         alt="Product image"
                         className="aspect-square w-full rounded-md object-cover"
                         height="84"
-                        src="/placeholder.svg"
+                        src={productPlaceHolderImage}
                         width="84"
                       />
                     </button>
@@ -295,7 +295,7 @@ const Edit = () => {
                         alt="Product image"
                         className="aspect-square w-full rounded-md object-cover"
                         height="84"
-                        src="/placeholder.svg"
+                        src={productPlaceHolderImage}
                         width="84"
                       />
                     </button>

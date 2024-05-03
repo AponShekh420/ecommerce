@@ -1,4 +1,5 @@
 "use client";
+import { FaSitemap } from "react-icons/fa";
 
 import {
   Home,
@@ -70,6 +71,20 @@ const Sidebar = () => {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Products</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="/dashboard/catagory"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <FaSitemap className="h-5 w-5" />
+                  <span className="sr-only">Product Catagory</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Product Catagory</TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <TooltipProvider>
