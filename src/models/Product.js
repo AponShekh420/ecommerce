@@ -7,6 +7,10 @@ const ProductSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        slug: {
+            type: String,
+            required: true,
+        },
         desc: {
             type: String,
             required: true,
@@ -17,10 +21,6 @@ const ProductSchema = mongoose.Schema(
         },
         stock: {
             type: Number,
-            required: true,
-        },
-        sku: {
-            type: String,
             required: true,
         },
         status: {

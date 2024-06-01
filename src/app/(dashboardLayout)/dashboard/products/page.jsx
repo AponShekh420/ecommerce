@@ -29,6 +29,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from "next/link";
 
 const Products = () => {
   return (
@@ -69,12 +70,14 @@ const Products = () => {
                 Export
               </span>
             </Button>
-            <Button size="sm" className="h-7 gap-1">
-              <PlusCircle className="h-3.5 w-3.5" />
-              <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Add Product
-              </span>
-            </Button>
+            <Link href="/dashboard/products/add">
+              <Button size="sm" className="h-7 gap-1">
+                <PlusCircle className="h-3.5 w-3.5" />
+                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                  Add Product
+                </span>
+              </Button>
+            </Link>
           </div>
         </div>
         <TabsContent value="all">

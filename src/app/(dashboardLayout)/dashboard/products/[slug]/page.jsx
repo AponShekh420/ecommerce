@@ -1,5 +1,5 @@
+"use client";
 import productPlaceHolderImage from "@/assets/product/placeholder.svg";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -27,11 +27,63 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ChevronLeft, PlusCircle, Upload } from "lucide-react";
 import Image from "next/image";
+import { notFound } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const Edit = () => {
+const Edit = ({ params }) => {
+  const [parent, setParent] = useState("");
+  const [subcatagory, setSubcatagoryValue] = useState("");
+  const [parentCatagoryData, setParentCatagoryData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [price, setPrice] = useState(0);
+  const [stock, setStock] = useState(100);
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [status, setStatus] = useState("");
+
+  const { slug } = params;
+  if (slug == "edit") {
+    //
+  } else if (slug == "add") {
+    //
+  } else {
+    notFound();
+  }
+
+  const getCatagory = async () => {
+    const res = await fetch("http://localhost:3000/api/catagory", {
+      method: "GET",
+      next: {
+        revalidate: 60,
+      },
+    });
+    const actualData = await res.json();
+    setParentCatagoryData(actualData);
+  };
+
+  const productHandler = async (e) => {
+    e.preventDefault();
+    const res = await fetch("http:/localhost:3000/api/product", {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        price,
+        stock,
+        desc,
+        catagory: parent,
+        subcatagory: subcatagory,
+        status,
+        img,
+      }),
+    });
+  };
+
+  useEffect(() => {
+    getCatagory();
+  }, []);
   return (
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
@@ -43,14 +95,11 @@ const Edit = () => {
           <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
             Pro Controller
           </h1>
-          <Badge variant="outline" className="ml-auto sm:ml-0">
-            In stock
-          </Badge>
+
           <div className="hidden items-center gap-2 md:ml-auto md:flex">
-            <Button variant="outline" size="sm">
-              Discard
+            <Button onClick={productHandler} size="sm">
+              Save Product
             </Button>
-            <Button size="sm">Save Product</Button>
           </div>
         </div>
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
@@ -65,19 +114,21 @@ const Edit = () => {
               <CardContent>
                 <div className="grid gap-6">
                   <div className="grid gap-3">
-                    <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="Title">Title</Label>
                     <Input
-                      id="name"
-                      type="text"
+                      id="Title"
+                      type="Title"
                       className="w-full"
-                      defaultValue="Gamer Gear Pro Controller"
+                      onChange={(e) => setTitle(e.target.value)}
+                      value={title}
                     />
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="description">Description</Label>
                     <Textarea
+                      onChange={(e) => setDesc(e.target.value)}
+                      value={desc}
                       id="description"
-                      defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies ultricies, nunc nisl ultricies nunc, nec ultricies nunc nisl nec nunc."
                       className="min-h-32"
                     />
                   </div>
@@ -98,7 +149,6 @@ const Edit = () => {
                       <TableHead className="w-[100px]">SKU</TableHead>
                       <TableHead>Stock</TableHead>
                       <TableHead>Price</TableHead>
-                      <TableHead className="w-[100px]">Size</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -108,7 +158,12 @@ const Edit = () => {
                         <Label htmlFor="stock-1" className="sr-only">
                           Stock
                         </Label>
-                        <Input id="stock-1" type="number" defaultValue="100" />
+                        <Input
+                          id="stock-1"
+                          type="number"
+                          onChange={(e) => setStock(e.target.value)}
+                          value={stock}
+                        />
                       </TableCell>
                       <TableCell>
                         <Label htmlFor="price-1" className="sr-only">
@@ -117,79 +172,9 @@ const Edit = () => {
                         <Input
                           id="price-1"
                           type="number"
-                          defaultValue="99.99"
+                          onChange={(e) => setPrice(e.target.value)}
+                          value={price}
                         />
-                      </TableCell>
-                      <TableCell>
-                        <ToggleGroup
-                          type="single"
-                          defaultValue="s"
-                          variant="outline"
-                        >
-                          <ToggleGroupItem value="s">S</ToggleGroupItem>
-                          <ToggleGroupItem value="m">M</ToggleGroupItem>
-                          <ToggleGroupItem value="l">L</ToggleGroupItem>
-                        </ToggleGroup>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-semibold">GGPC-002</TableCell>
-                      <TableCell>
-                        <Label htmlFor="stock-2" className="sr-only">
-                          Stock
-                        </Label>
-                        <Input id="stock-2" type="number" defaultValue="143" />
-                      </TableCell>
-                      <TableCell>
-                        <Label htmlFor="price-2" className="sr-only">
-                          Price
-                        </Label>
-                        <Input
-                          id="price-2"
-                          type="number"
-                          defaultValue="99.99"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <ToggleGroup
-                          type="single"
-                          defaultValue="m"
-                          variant="outline"
-                        >
-                          <ToggleGroupItem value="s">S</ToggleGroupItem>
-                          <ToggleGroupItem value="m">M</ToggleGroupItem>
-                          <ToggleGroupItem value="l">L</ToggleGroupItem>
-                        </ToggleGroup>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-semibold">GGPC-003</TableCell>
-                      <TableCell>
-                        <Label htmlFor="stock-3" className="sr-only">
-                          Stock
-                        </Label>
-                        <Input id="stock-3" type="number" defaultValue="32" />
-                      </TableCell>
-                      <TableCell>
-                        <Label htmlFor="price-3" className="sr-only">
-                          Stock
-                        </Label>
-                        <Input
-                          id="price-3"
-                          type="number"
-                          defaultValue="99.99"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <ToggleGroup
-                          type="single"
-                          defaultValue="s"
-                          variant="outline"
-                        >
-                          <ToggleGroupItem value="s">S</ToggleGroupItem>
-                          <ToggleGroupItem value="m">M</ToggleGroupItem>
-                          <ToggleGroupItem value="l">L</ToggleGroupItem>
-                        </ToggleGroup>
                       </TableCell>
                     </TableRow>
                   </TableBody>
@@ -210,20 +195,25 @@ const Edit = () => {
                 <div className="grid gap-6 sm:grid-cols-3">
                   <div className="grid gap-3">
                     <Label htmlFor="category">Category</Label>
-                    <Select>
-                      <SelectTrigger id="category" aria-label="Select category">
-                        <SelectValue placeholder="Select category" />
+                    <Select onValueChange={(value) => setParent(value)}>
+                      <SelectTrigger id="category" aria-label="Select Category">
+                        <SelectValue placeholder="Select Category" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="clothing">Clothing</SelectItem>
-                        <SelectItem value="electronics">Electronics</SelectItem>
-                        <SelectItem value="accessories">Accessories</SelectItem>
+                        <SelectItem value="NoParent">No parent</SelectItem>
+                        {parentCatagoryData.map((element, index) => (
+                          <SelectItem key={index} value={element._id}>
+                            {element.name}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="subcategory">Subcategory (optional)</Label>
-                    <Select>
+                    <Select
+                      onValueChange={(value) => setSubcatagoryValue(value)}
+                    >
                       <SelectTrigger
                         id="subcategory"
                         aria-label="Select subcategory"
@@ -231,9 +221,26 @@ const Edit = () => {
                         <SelectValue placeholder="Select subcategory" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="t-shirts">T-Shirts</SelectItem>
-                        <SelectItem value="hoodies">Hoodies</SelectItem>
-                        <SelectItem value="sweatshirts">Sweatshirts</SelectItem>
+                        <SelectItem value="NoSubcatagory">
+                          No Subcatagory
+                        </SelectItem>
+                        {parentCatagoryData.map((element) => {
+                          if (element._id === parent) {
+                            console.log(element);
+                            return element.subcatagory.map(
+                              (subElement, index) => {
+                                return (
+                                  <SelectItem
+                                    key={index}
+                                    value={subElement._id}
+                                  >
+                                    {subElement.name}
+                                  </SelectItem>
+                                );
+                              }
+                            );
+                          }
+                        })}
                       </SelectContent>
                     </Select>
                   </div>
@@ -250,7 +257,7 @@ const Edit = () => {
                 <div className="grid gap-6">
                   <div className="grid gap-3">
                     <Label htmlFor="status">Status</Label>
-                    <Select>
+                    <Select onValueChange={(value) => setStatus(value)}>
                       <SelectTrigger id="status" aria-label="Select status">
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
